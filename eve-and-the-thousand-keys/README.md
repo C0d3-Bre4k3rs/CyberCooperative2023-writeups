@@ -8,7 +8,7 @@ writeup-writer: [L3d](https://github.com/imL3d)
 **files (copy):** [public.zip](files/public.zip)  
 
 In this challenge we received 1000 public SSH keys that we need to use in order to connect to the target machine.
-## Solution
+## Solution 🤓
 Right off the bat, when examining this question it seems _impossible_, especially in the given timeframe - we don't know which public keys are still valid in the eyes of the server and furthermore, we don't have the correspondent private keys that we need in order to authenticate!  
 But now we have broken down this problem into two major steps:
 1. Identify the valid public RSA keys.
@@ -28,7 +28,7 @@ do
 done
 ```
 We get only one unique result of this is for key  `854` (it couldn't parse it as a private key, of course).  
- Step 1 is complete! Now we just need to get reconstruct the private key and we solved the challenge!  
+ Step 1 is complete✅! Now we just need to get reconstruct the private key and we solved the challenge!   
   
  For this step we need to get our hands dirty with the inner working of the RSA keys.   
  From the public key we need to get the exponent (`e`) and the modulo (`n`, product of two large prime numbers). This can be easily done since this is stored on the public key:
@@ -48,7 +48,7 @@ def extract_rsa_components(public_key_text):
  ```
 After that comes the hard part - we need to get the prime factors that construct `N`- `p` and `q`.  
 For this we can use any factorization program (ex: `primefac`), and we just have to hope these are [weak primes](https://en.wikipedia.org/wiki/Strong_prime)..   
-BINGO! we found `p` and `q` :).  
+BINGO🥳! we found `p` and `q` :).  
 Using our newly found knowledge we can construct the _private RSA key_:
 ```python
 from Crypto.Util.number import inverse
@@ -71,4 +71,11 @@ all we have to do left is:
 ```bash
  $ ssh challenge@0.cloud.chals.io -p 17009 -i .\private_key.pem
 flag{guess_it_wasnt_prime_season}
-```  
+```
+    
+---
+This challenge was fun, as it helps to understand how SSH and RSA internally works, and why it is important to have strong primes in your RSA keys, even if it takes couple more seconds to generate one ;).  
+P.S: our first approach was to just scan each public key and reconstruct it's private counterpart, but we quickly realized this is going to take waaaay too long so we need to add some step in the middle.  
+And this eventually allowed us be one of the first few solves of this challenge :)
+  
+Thanks for reading <3
