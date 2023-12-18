@@ -1,5 +1,5 @@
 # CRYPTO: wicked
-solvers: [L3d](https://github.com/imL3d)  
+solver: [L3d](https://github.com/imL3d)  
 writeup-writer: [L3d](https://github.com/imL3d)  
 
 **Description:**
