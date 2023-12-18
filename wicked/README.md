@@ -10,7 +10,7 @@ writeup-writer: [L3d](https://github.com/imL3d)
 In this challenge we received 7 lines of encrypted text that we need to extract the flag from.
 ## Solution🕵️
 In order to solve this challenge, we have to take advantage of the fact that the encrypted text was encrypted multiple times via the same [OTP](https://en.wikipedia.org/wiki/One-time_pad). Essentially, when an OTP is reused we can decipher it and using an existing part of the original messages we can start decrypting the messages (read more about this vulnerability [here](https://crypto.stackexchange.com/questions/59/taking-advantage-of-one-time-pad-key-reuse)).  
-When implementing this to python3: 
+When implementing this in python3: 
 ```python
 word = 'wicked'
 word_hex = ''.join([hex(ord(c))[2:] for c in word])
@@ -28,7 +28,7 @@ with open('xored.txt', 'r') as f:
                 pass
 ```
 
-For example, when xor-ing the two last lines we receive:  
+For example, when xor-ing the two last chiphertexts we receive:  
 ```
 Blew u
 ro⌂.t4
@@ -47,3 +47,4 @@ Sometimes the solution for these crypto challenges isn't clear from the start, a
 Another tip is to try, try, and try more. You have an idea of what it can be? Don't be afraid to write an POC for it even if you are only 50% sure it will work. How else will you know?  
 And the last thing is to consult your teammates (if you have some😔), and to try and be creative to look for other ways to tackle the challenge.  
   
+![drake-otp](images/drakeotp.png)
