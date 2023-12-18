@@ -1,6 +1,7 @@
 # CRYPTO: nullnull
-solvers: [L3d](https://github.com/imL3d), [N04M1st3r](https://github.com/N04M1st3r)
+solvers: [L3d](https://github.com/imL3d), [N04M1st3r](https://github.com/N04M1st3r)  
 writeup-writer: [L3d](https://github.com/imL3d)  
+
 **Description:**
 >Welcome to my secure flag sharer where there are null nulls!
 >  nc 0.cloud.chals.io 15076
