@@ -1,7 +1,7 @@
 # CRYPTO: Wicked
 solvers: [L3d](https://github.com/imL3d)  
 writeup-writer: [L3d](https://github.com/imL3d)  
-___
+
 **Description:**
 >The dev team implemented their own crypto that's supposed to be perfect. Like super perfect. But there's no way they did it right... They gave me some ciphertext to try to decrypt. Can you help me?
 
