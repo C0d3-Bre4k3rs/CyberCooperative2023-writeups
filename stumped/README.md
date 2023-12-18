@@ -1,11 +1,11 @@
 # PWN: Stumped
-solver: [N04M1st3r](https://github.com/N04M1st3r)
+solver: [N04M1st3r](https://github.com/N04M1st3r)  
 writeup-writer: [L3d](https://github.com/imL3d)  
 **Description:**
 > Michael's computer science project shows the structure of tar files. It is using the tree command on the backend, and something just doesn't seem right...
 
-**files (copy):** [app.py](files/app.py)
-**screenshot:**[homepage](images/stumpedhome.png)
+**files (copy):** [app.py](files/app.py)  
+**screenshot:** [homepage](images/stumpedhome.png)
 
 In this challenge we receive a site (and it's code) that runs the unix [tree](https://linux.die.net/man/1/tree) command on an uploaded tar archive. We need to exploit this site and get user access.
 
@@ -29,8 +29,8 @@ sprintf(hcmd,"tree -n -H \"%s%s/%s\" -L %d -R -o \"%s/00Tree.html\" \"%s\"\n", h
 system(hcmd);
 ``` 
   
-In order to exploit this we need to name one of our inside folders in the archive in a special way, to include the code that we want to run on the server (we went with a python reverse shell in this case):
-INSERT EXPLOIT
+In order to exploit this we need to name one of our inside folders in the archive in a special way, to include the code that we want to run on the server (we went with a python reverse shell in this case):  
+INSERT EXPLOIT  
 We we upload the tar archive with this folder we get a reverse shell, and then quickly after the flag🚩:
 ```
 $ cat flag.txt
