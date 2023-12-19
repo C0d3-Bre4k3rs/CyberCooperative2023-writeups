@@ -4,7 +4,6 @@ writeup-writer: [L3d](https://github.com/imL3d)
 
 **Description:**
 > Yet Another Markup Language, YAML, YAML Ain't Markup Language, Yamale
-> https://thecybercoopctf-c608d319bd29-valid-yaml-0.chals.io
 
 **files (copy):** [src.zip](files/src.zip)  
 **screenshot:** [homepage](images/validyaml.png)  
