@@ -11,7 +11,7 @@ writeup-writer: [L3d](https://github.com/imL3d)
 In this challenge we receive a site (and it's code) that runs the unix [tree](https://linux.die.net/man/1/tree) command on an uploaded tar archive. We need to exploit this site and get user access.
 
 ## Solution 🌳
-When uploading a tar archive to the site to extract, we can write to anywhere on our system via carefully naming our folders. For example, if we have an archive with the path in it (the folder names are `..`): `../../../folder1/file1.txt` we can write into a folder called `folder1` that is 3 directories above us. This is due to INSERT EXPLOIT.  
+When uploading a tar archive to the site to extract, we can write to anywhere on our system via carefully naming our folders. For example, if we have an archive with the path in it (the folder names are `..`): `../../../folder1/file1.txt` we can write into a folder called `folder1` that is 3 directories above us. This is due to an exploit known as [Zip Slip](https://security.snyk.io/research/zip-slip-vulnerability).  
 Our first attempt of breaching this machine was to try and override some important file, in order to get and RCE or expose this machine to the internet. This was incredibly difficult since we didn't really have any information whatsoever on where this code was running from, or what with what privileges - so we abandoned the idea.  
   
 After messing around a bit more with the site we noticed something about the text on it - it was powered via the `tree` command on version `1.8.0` - could it be that the version of tree is outdated and we can somehow exploit this???  
