@@ -1,18 +1,19 @@
 # Web: valid yaml
-solvers: [L3d](https://github.com/imL3d), [ProfessorZak](https://github.com//ProfessorZak) 
+solvers: [L3d](https://github.com/imL3d), [ProfessorZak](https://github.com//ProfessorZak)  
 writeup-writer: [L3d](https://github.com/imL3d)  
+
 **Description:**
 > Yet Another Markup Language, YAML, YAML Ain't Markup Language, Yamale
 > https://thecybercoopctf-c608d319bd29-valid-yaml-0.chals.io
 
-**files (copy):** [src.zip](files/src.zip)
-**screenshot:** [homepage](images/validyaml.png)
+**files (copy):** [src.zip](files/src.zip)  
+**screenshot:** [homepage](images/validyaml.png)  
 
 In this challenge we receive a site and it's source that allows us to validate our yaml input to a preestablished schema. We need to exploit this site and get user access to it.
 
 ## Solution❄️
 The source code for this website in python via flask, using the Yamale library in order to validate the yaml input. The first things that pops to mind the the [PyYaml Deserialization](https://book.hacktricks.xyz/pentesting-web/deserialization/python-yaml-deserialization) that can allow us to get and RCE to the host machine? Could it be that the library used here have the same issue?  
-Upon further examination, we find out that indeed Yamale runs on PyYaml and have the same issue, especially in the version that is used in the site - take a look at this [github issue + POC](https://github.com/23andMe/Yamale/issues/167).  
+Upon further examination, we find out that indeed `Yamale` runs on `PyYaml` and have the same issue, especially in the version that is used in the site - take a look at this [github issue + POC](https://github.com/23andMe/Yamale/issues/167).  
 Great! we can just input this as the input... But wait. The exploit requires us to have influence on the schema and not just the input, and that is taken from the SQL database that we yet have control over:
 ```python
 schema = Schemas.query.filter_by(id=schema_id).first_or_404() # If we can add our own schema... bingo!
