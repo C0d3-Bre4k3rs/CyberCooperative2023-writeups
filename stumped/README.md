@@ -17,7 +17,7 @@ Our first attempt of breaching this machine was to try and override some importa
 After messing around a bit more with the site we noticed something about the text on it - it was powered via the `tree` command on version `1.8.0`. Also when uploading a tar archive the tree command displays in HTML output it's version which was, as expected `1.8.0`. We started to check the versions on our personal machines and compare them with the server's version - and we found it was outdated! (Except one of our teammates who had a depricated version which bugged us for a while 😅). Could we someohow exploit this old version?????  
 So, the search for the source code of this version began (or at least the release notes). Finding the entire source code was surprisingly difficult, but we managed to find it at the end -  [the source code](https://salsa.debian.org/debian/tree-packaging).  
   
- Looking at the source code of the old version we found in `html.c` the implementation for a recursive call for the folders:  
+Looking at the source code of the old version, in `html.c` the there is a flawed implementation for a recursive call for `tree` command:  
 ```C
 hcmd = xmalloc(sizeof(char) * (49 + strlen(host) + strlen(d) + strlen((*dir)->name)) + 10 + (2*strlen(path)));
 sprintf(hcmd,"tree -n -H \"%s%s/%s\" -L %d -R -o \"%s/00Tree.html\" \"%s\"\n", host,d+1,(*dir)->name,Level+1,path,path);
