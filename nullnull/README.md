@@ -11,7 +11,7 @@ writeup-writer: [L3d](https://github.com/imL3d)
 In this challenge we receive a connection to the server that sends us the flag encrypted strongly 
 ## Solution🕵️
 Upon analyzing the server code we can understand that it encrypts the flag each time with a newly created key which is at least the length of the flag (essentially an [OTP](https://en.wikipedia.org/wiki/One-time_pad)).  
-After goofing around and trying to break python's random ([it is possible!](https://www.kaggle.com/code/taahakhan/rps-cracking-random-number-generators)), we saw a little bug in this code: it never (never) includes a part of the original key in the ciphertext - **the random key generation starts with 1, not 0 **.  
+After goofing around and trying to break python's random ([it is possible!](https://www.kaggle.com/code/taahakhan/rps-cracking-random-number-generators)), we saw a little bug in this code: it never (never) includes a part of the original key in the ciphertext - ** the random key generation starts with 1, not 0 **.  
 In order to exploit this vulnerability we just need to track the letters given, and with enough retries we can find out what characters aren't used... 
 ```python
 import socket
