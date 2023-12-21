@@ -48,7 +48,7 @@ def extract_rsa_components(public_key_text):
     return N, e
  ```
 After that comes the hard part - we need to get the prime factors that construct `N`- `p` and `q`.  
-For this we can use any factorization program (ex: `primefac`). Usually, when it's pretty hard to factor for `p` and `q`. But in our case `p` and `q` are relativley close primes to each other, so we can use [fermat factorization[ (https://fermatattack.secvuln.info/) method in order to find them.  
+For this we can use any factorization program (ex: `primefac`). Usually, when it's pretty hard to factor for `p` and `q`. But in our case `p` and `q` are relativley close primes to each other, so we can use [fermat factorization] (https://fermatattack.secvuln.info/) method in order to find them.  
 BINGO🥳! Using this method we found `p` and `q` :).  
 Using our newly found knowledge we can construct the _private RSA key_:
 ```python
